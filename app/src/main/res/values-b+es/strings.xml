@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">Groceries</string>
+
+    <!-- Categories -->
+    <string name="fruits">Frutas</string>
+    <string name="vegetables">Vegetales</string>
+    <string name="dairy">Lacteos</string>
+    <string name="proteins">Proteinas</string>
+    <string name="grains">Granos y mas</string>
+    <string name="drinks">Bebidas</string>
+    <string name="cleaning">Limpieza</string>
+    <string name="sauces">Salsas</string>
+    <string name="seasoning">Condimentos</string>
+
+    <!-- Fruits -->
+    <string name="apple">Manzana</string>
+    <string name="banana">Banana</string>
+    <string name="cherry">Cereza</string>
+    <string name="avocado">Palta</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="strawberry">Frutilla</string>
+    <string name="peach">Durazno</string>
+
+    <!-- Vegetables -->
+    <string name="asparagus">Esparrago</string>
+    <string name="broccoli">Brocoli</string>
+    <string name="onion">Cebolla</string>
+    <string name="paprika">Morron</string>
+    <string name="carrot">Zanahoria</string>
+    <string name="garlic">Ajo</string>
+    <string name="cucumber">Pepino</string>
+    <string name="lettuce">Lechuga</string>
+    <string name="cabbage">Repollo</string>
+    <string name="leek">Puerro</string>
+    <string name="eggplant">Berenjena</string>
+    <string name="celery">Apio</string>
+
+    <!-- Dairy -->
+    <string name="milk">Leche</string>
+    <string name="cheese">Queso</string>
+
+    <!-- Protein -->
+    <string name="steak">Bife</string>
+    <string name="fish">Pescado</string>
+    <string name="eggs">Huevos</string>
+    <string name="bacon">Tocino</string>
+    <string name="prawn">Camaron</string>
+    <string name="chicken">Pollo</string>
+    <string name="crab">Cangrejo</string>
+    <string name="lamb">Cordero</string>
+
+    <!-- Grains and more -->
+    <string name="bread">Pan</string>
+    <string name="corn">Choclo</string>
+    <string name="rice">Arroz</string>
+    <string name="spaghetti">Spaghetti</string>
+    <string name="potato">Papa</string>
+    <string name="flour">Harina</string>
+    <string name="french_fries">Papas fritas</string>
+
+    <!-- Drinks -->
+    <string name="beer">Cerveza</string>
+    <string name="tea">Te</string>
+    <string name="coffee">Cafe</string>
+    <string name="wine">Vino</string>
+    <string name="beer_can">Lata cerveza</string>
+
+    <!-- Cleaning -->
+    <string name="soap">Jabon</string>
+    <string name="clothes_detergent">Jabon liquido</string>
+    <string name="toilet_paper">Papel higienico</string>
+    <string name="sponge">Esponja</string>
+    <string name="dish_detergent">Detergente</string>
+    <string name="bleach">Lavandina</string>
+    <string name="paper_towel">Rollo de cocina</string>
+    <string name="brush">Cepillo</string>
+
+    <!-- Sauces -->
+    <string name="ketchup">Ketchup</string>
+    <string name="mayonnaise">Mayonesa</string>
+    <string name="mustard">Mostaza</string>
+    <string name="soy_sauce">Salsa de soja</string>
+    <string name="sriracha">Sriracha</string>
+    <string name="bbq_sauce">BBQ</string>
+    <string name="worcestershire">Worcestershire</string>
+
+    <!-- Seasoning -->
+    <string name="salt">Sal</string>
+    <string name="sugar">Azucar</string>
+    <string name="oil">Aceite</string>
+    <string name="pepper">Pimienta</string>
+    <string name="honey">Miel</string>
+    <string name="lemon_juice">Jugo de limon</string>
+</resources>

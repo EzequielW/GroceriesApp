@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/search_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Product name"
+        android:paddingVertical="12dp"
+        android:textSize="24sp" />
+
+    <TableRow>
+        <Spinner
+            android:id="@+id/detail_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Units"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/detail_quantity"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:hint="100"
+            android:inputType="number"
+            android:textSize="14sp"
+            android:textAlignment="center" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/detail_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/detail_add_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Accept" />
+    </TableRow>
+
+</TableLayout>

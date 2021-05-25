@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1076022285387",
+    "project_id": "groceries-app-5de24",
+    "storage_bucket": "groceries-app-5de24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076022285387:android:ec2be85add4a89ea5569ce",
+        "android_client_info": {
+          "package_name": "com.example.listasupermercado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076022285387-7dnvmjgaui9tg3dj8augvjtbbfsbe22p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDICUDtmKan5167EG7-DOtVvr61aq6IkhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076022285387-7dnvmjgaui9tg3dj8augvjtbbfsbe22p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">Groceries</string>
+
+    <!-- Categories -->
+    <string name="fruits">Fruits</string>
+    <string name="vegetables">Vegetables</string>
+    <string name="dairy">Dairy products</string>
+    <string name="proteins">Proteins</string>
+    <string name="grains">Grains and more</string>
+    <string name="drinks">Drinks</string>
+    <string name="cleaning">Cleaning</string>
+    <string name="sauces">Sauces</string>
+    <string name="seasoning">Seasoning</string>
+
+    <!-- Fruits -->
+    <string name="apple">Apple</string>
+    <string name="banana">Banana</string>
+    <string name="cherry">Cherry</string>
+    <string name="avocado">Avocado</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="strawberry">Strawberry</string>
+    <string name="peach">Peach</string>
+
+    <!-- Vegetables -->
+    <string name="asparagus">Asparagus</string>
+    <string name="broccoli">Broccoli</string>
+    <string name="onion">Onion</string>
+    <string name="paprika">Paprika</string>
+    <string name="carrot">Carrot</string>
+    <string name="garlic">Garlic</string>
+    <string name="cucumber">Cucumber</string>
+    <string name="lettuce">Lettuce</string>
+    <string name="cabbage">Cabbage</string>
+    <string name="leek">Leek</string>
+    <string name="eggplant">Eggplant</string>
+    <string name="celery">Celery</string>
+
+    <!-- Dairy -->
+    <string name="milk">Milk</string>
+    <string name="cheese">Cheese</string>
+
+    <!-- Protein -->
+    <string name="steak">Steak</string>
+    <string name="fish">Fish</string>
+    <string name="eggs">Eggs</string>
+    <string name="bacon">Bacon</string>
+    <string name="prawn">Prawn</string>
+    <string name="chicken">Chicken</string>
+    <string name="crab">Crab</string>
+    <string name="lamb">Lamb</string>
+
+    <!-- Grains and more -->
+    <string name="bread">Bread</string>
+    <string name="corn">Corn</string>
+    <string name="rice">Rice</string>
+    <string name="spaghetti">Spaghetti</string>
+    <string name="potato">Potato</string>
+    <string name="flour">Flour</string>
+    <string name="french_fries">French fries</string>
+
+    <!-- Drinks -->
+    <string name="beer">Beer</string>
+    <string name="tea">Tea</string>
+    <string name="coffee">Coffee</string>
+    <string name="wine">Wine</string>
+    <string name="beer_can">Beer can</string>
+
+    <!-- Cleaning -->
+    <string name="soap">Soap</string>
+    <string name="clothes_detergent">Clothes detergent</string>
+    <string name="toilet_paper">Toilet paper</string>
+    <string name="sponge">Sponge</string>
+    <string name="dish_detergent">Dish detergent</string>
+    <string name="bleach">Bleach</string>
+    <string name="paper_towel">Paper towel</string>
+    <string name="brush">Brush</string>
+
+    <!-- Sauces -->
+    <string name="ketchup">Ketchup</string>
+    <string name="mayonnaise">Mayonnaise</string>
+    <string name="mustard">Mustard</string>
+    <string name="soy_sauce">Soy sauce</string>
+    <string name="sriracha">Sriracha</string>
+    <string name="bbq_sauce">BBQ</string>
+    <string name="worcestershire">Worcestershire</string>
+
+    <!-- Seasoning -->
+    <string name="salt">Salt</string>
+    <string name="sugar">Sugar</string>
+    <string name="oil">Oil</string>
+    <string name="pepper">Pepper</string>
+    <string name="honey">Honey</string>
+    <string name="lemon_juice">Lemon juice</string>
+</resources>
