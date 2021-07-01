@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Groceries</string>
 
+    <!-- App text -->
+    <string name="toolbar_title">Mis compras</string>
+    <string name="main_menu_logout_title">Log out</string>
+    <string name="main_menu_settings_title">Ajustes</string>
+    <string name="main_row_change_name_title">Cambiar nombre</string>
+    <string name="main_row_delete_title">Eliminar</string>
+    <string name="add_item_button_text">Agregar item</string>
+
     <!-- Categories -->
     <string name="fruits">Frutas</string>
     <string name="vegetables">Vegetales</string>

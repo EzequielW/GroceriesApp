@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/main_row_change_name"
+        android:title="@string/main_row_change_name_title"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/main_row_delete"
+        android:title="@string/main_row_delete_title"
+        app:showAsAction="never"/>
+</menu>

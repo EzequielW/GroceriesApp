@@ -1,52 +1,80 @@
 package com.example.listasupermercado;
 
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+
 import com.example.listasupermercado.adapter.MainAdapter;
 import com.example.listasupermercado.model.Cart;
-import com.example.listasupermercado.model.ProductDetail;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.InputType;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<String> cartNames = new ArrayList<String>();
-    private ArrayList<String> cartIDs = new ArrayList<String>();
+    private final ArrayList<String> cartNames = new ArrayList<>();
+    private final ArrayList<String> cartIDs = new ArrayList<>();
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            result -> onSignInResult(result)
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        setTitle("Mis listas");
+
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build());
+
+        // Create and launch sign-in intent
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setLogo(R.drawable.ingredients)
+                .setTheme(R.style.AppTheme)
+                .build();
+        signInLauncher.launch(signInIntent);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.main_menu_logout) {
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(task -> signInLauncher.launch(signInIntent));
+            }
+            return true;
+        });
 
         // Load user carts
         try{
@@ -70,77 +98,54 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mainAdapter);
 
+        // Link to share a list
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(getIntent())
-                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
-                    @Override
-                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        // Get deep link from result (may be null if no link is found)
-                        Uri deepLink = null;
-                        if (pendingDynamicLinkData != null) {
-                            deepLink = pendingDynamicLinkData.getLink();
-                            String newCartID = deepLink.getQueryParameter("cartId");
-                            String newCartName = deepLink.getQueryParameter("cartName");
-                            Log.i("CART_ID", newCartID);
-                            Log.i("CART_NAME", newCartName);
-                            if(!cartIDs.contains(newCartID)){
-                                cartIDs.add(newCartID);
-                                cartNames.add(newCartName);
-                                mainAdapter.notifyItemChanged(cartIDs.size() - 1);
-                                mainAdapter.notifyItemChanged(cartNames.size() - 1);
-                            }
+                .addOnSuccessListener(this, pendingDynamicLinkData -> {
+                    // Get deep link from result (may be null if no link is found)
+                    if (pendingDynamicLinkData != null) {
+                        Uri deepLink = pendingDynamicLinkData.getLink();
+                        String newCartID = deepLink.getQueryParameter("cartId");
+                        String newCartName = deepLink.getQueryParameter("cartName");
+                        Log.i("CART_ID", newCartID);
+                        Log.i("CART_NAME", newCartName);
+                        if(!cartIDs.contains(newCartID)){
+                            cartIDs.add(newCartID);
+                            cartNames.add(newCartName);
+                            mainAdapter.notifyItemChanged(cartIDs.size() - 1);
+                            mainAdapter.notifyItemChanged(cartNames.size() - 1);
                         }
                     }
                 })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("DYNAMICLK_FAILURE", "getDynamicLink:onFailure", e);
-                    }
-                });
-
-        // Add divider between items
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+                .addOnFailureListener(this, e -> Log.w("DYNAMICLK_FAILURE", "getDynamicLink:onFailure", e));
 
         // Dialog to add new item to the list
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Title");
+        fab.setOnClickListener(view -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this, R.style.AppTheme_PopupOverlay);
+            builder.setTitle("List title");
 
-                // Set up the input
-                final EditText input = new EditText(MainActivity.this);
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
+            // Set up the input
+            final EditText input = new EditText(MainActivity.this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
 
-                // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String title = input.getText().toString();
-                        cartNames.add(title);
-                        mainAdapter.notifyItemChanged(cartNames.size() - 1);
+            // Set up the buttons
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                String title = input.getText().toString();
+                cartNames.add(title);
+                mainAdapter.notifyItemChanged(cartNames.size() - 1);
 
-                        // Save cart to database
-                        DatabaseReference newPush = FirebaseDatabase.getInstance().getReference().child("cart").push();
-                        newPush.setValue(new Cart(title, new ArrayList<ProductDetail>()));
-                        cartIDs.add(newPush.getKey());
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-            }
+                // Save cart to database
+                DatabaseReference newPush = FirebaseDatabase.getInstance().getReference().child("cart").push();
+                newPush.setValue(new Cart(title, new ArrayList<>()));
+                cartIDs.add(newPush.getKey());
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+            builder.show();
         });
+
+
     }
 
     @Override
@@ -160,5 +165,17 @@ public class MainActivity extends AppCompatActivity {
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
+        /*
+        IdpResponse response = result.getIdpResponse();
+        if (result.getResultCode() == RESULT_OK) {
+            // Successfully signed in
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            // ...
+        }
+
+         */
     }
 }

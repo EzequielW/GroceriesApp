@@ -7,20 +7,28 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/search_category_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Category"
-        android:padding="16dp"
+        android:textSize="16sp"
+        android:padding="8dp"
         android:gravity="center"
-        android:textColor="#ffffff"
-        android:background="@drawable/category_title_border"/>
+        android:textColor="@color/colorWhite"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="0dp"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="1dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_category_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@android:layout/simple_spinner_item"/>
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/search_row_item"
+        tools:itemCount="5"
+        tools:orientation="horizontal" />
 
 </LinearLayout>
