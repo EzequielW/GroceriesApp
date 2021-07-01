@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class SearchRowDialog {
 
     public void showDialog(final Context context, final Product product){
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(context, R.style.AppTheme_PopupOverlay);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.search_dialog);

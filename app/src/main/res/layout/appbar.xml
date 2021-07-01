@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -12,7 +12,6 @@
         android:background="@color/colorPrimary"
         app:title="@string/toolbar_title"
         app:menu="@menu/appbar_menu"
-        app:titleTextColor="@color/colorWhite"
         style="@style/Widget.MaterialComponents.Toolbar.Primary" />
 
 </com.google.android.material.appbar.AppBarLayout>

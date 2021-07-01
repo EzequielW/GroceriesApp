@@ -1,14 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimaryLight</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
-        <item name="android:textColorPrimary">@color/colorWhite</item>
-        <item name="android:textColor">@color/colorBlack</item>
     </style>
+
 </resources>
