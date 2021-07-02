@@ -17,11 +17,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.listasupermercado.adapter.CartAdapter;
 import com.example.listasupermercado.model.ProductDetail;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,31 +51,28 @@ public class CartActivity extends AppCompatActivity {
         toolbar.setTitle(cartName);
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.main_menu_logout) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Log out not implemented",
-                        Toast.LENGTH_SHORT
-                ).show();
+                FirebaseAuth.getInstance().signOut();
+                Intent signInActivity = new Intent(this, SignInActivity.class);
+                startActivity(signInActivity);
             }
             return true;
         });
 
-        // Load database reference to cart
-        cartRef = FirebaseDatabase.getInstance().getReference().child("cart").child(cartID).child("products");
-
+        // Start ActionMode when an item is long clicked
         actionModeCallback = new ActionModeCallback();
-
         cartAdapter = new CartAdapter(productDetails, checkedItems, () -> {
             if(actionMode == null){
                 actionMode = startSupportActionMode(actionModeCallback);
             }
         });
-
+        // Setup recyclerview
         RecyclerView recyclerView = findViewById(R.id.shop_list);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
+        // Load database reference to cart
+        cartRef = FirebaseDatabase.getInstance().getReference().child("carts").child(cartID).child("products");
         // Listener to update the cart if any change occurs
         cartRef.addValueEventListener(new ValueEventListener() {
             @Override

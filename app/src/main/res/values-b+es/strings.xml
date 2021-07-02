@@ -3,10 +3,11 @@
 
     <!-- App text -->
     <string name="toolbar_title">Mis compras</string>
-    <string name="main_menu_logout_title">Log out</string>
+    <string name="main_menu_logout_title">Sign out</string>
     <string name="main_menu_settings_title">Ajustes</string>
     <string name="main_row_change_name_title">Cambiar nombre</string>
     <string name="main_row_delete_title">Eliminar</string>
+    <string name="main_row_quantity_text">%1$d items</string>
     <string name="add_item_button_text">Agregar item</string>
 
     <!-- Categories -->

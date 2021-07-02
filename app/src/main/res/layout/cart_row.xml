@@ -32,21 +32,20 @@
             android:id="@+id/cart_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Product name"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:background="@color/colorAccentOverlay"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/cart_item_image"
             app:layout_constraintEnd_toEndOf="@+id/cart_item_image"
-            app:layout_constraintStart_toStartOf="@+id/cart_item_image" />
+            app:layout_constraintStart_toStartOf="@+id/cart_item_image"
+            tools:text="Product name"/>
 
         <TextView
             android:id="@+id/cart_item_quantity"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/colorWhite"
-            android:text="300g"
             android:textSize="16sp"
             android:background="@drawable/ic_border_pill"
             android:backgroundTint="@color/colorAccentOverlay"
@@ -54,7 +53,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/cart_item_image"
             app:layout_constraintEnd_toEndOf="@+id/cart_item_image"
             app:layout_constraintStart_toStartOf="@+id/cart_item_image"
-            app:layout_constraintTop_toTopOf="@+id/cart_item_image" />
+            app:layout_constraintTop_toTopOf="@+id/cart_item_image"
+            tools:text="300g"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

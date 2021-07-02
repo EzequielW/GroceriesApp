@@ -62,7 +62,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>{
     public void onBindViewHolder(CartAdapter.MyViewHolder holder, int position) {
         ProductDetail detail = productDetails.get(position);
         holder.name.setText(detail.getProduct().getProductName());
-        holder.quantity.setText(detail.getProductQuantity() + detail.getProductUnit());
+        String itemQuantity = detail.getProductQuantity() + detail.getProductUnit();
+        holder.quantity.setText(itemQuantity);
 
         int imageId = holder.image.getResources().getIdentifier(
                 detail.getProduct().getProductImageName(),
@@ -129,10 +130,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>{
                         .setListener(null);
             }
         }
-    }
-
-    public boolean isActionModeEnabled() {
-        return actionModeEnabled;
     }
 
     public void setActionModeEnabled(boolean actionModeEnabled) {

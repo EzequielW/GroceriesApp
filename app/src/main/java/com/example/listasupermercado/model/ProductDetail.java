@@ -3,12 +3,7 @@ package com.example.listasupermercado.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryo.KryoSerializable;
-import com.esotericsoftware.kryo.io.Output;
-import com.esotericsoftware.kryo.io.Input;
-
-public class ProductDetail implements Parcelable, KryoSerializable {
+public class ProductDetail implements Parcelable {
     private Product product;
     private String productUnit;
     private int productQuantity;
@@ -45,11 +40,9 @@ public class ProductDetail implements Parcelable, KryoSerializable {
         this.productQuantity = productQuantity;
     }
 
-
     /*
         Parcelable methods
      */
-
     protected ProductDetail(Parcel in) {
         product = (Product) in.readValue(Product.class.getClassLoader());
         productUnit = in.readString();
@@ -80,19 +73,4 @@ public class ProductDetail implements Parcelable, KryoSerializable {
             return new ProductDetail[size];
         }
     };
-
-    /*
-        KryoSerializable methods
-     */
-    public void write(Kryo kryo, Output output){
-        output.writeInt(this.productQuantity);
-        output.writeString(this.productUnit);
-        kryo.writeClassAndObject(output, this.product);
-    }
-
-    public void read(Kryo kryo, Input input){
-        this.productQuantity = input.readInt();
-        this.productUnit = input.readString();
-        this.product = (Product) kryo.readClassAndObject(input);
-    }
 }
