@@ -126,9 +126,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
                     .setLink(Uri.parse("https://www.groceriesapp.com/").buildUpon()
                             .appendQueryParameter("cartId", cartIDs.get(position)).build())
                     .setDomainUriPrefix("https://groceriesapp.page.link")
-                    .setAndroidParameters(
-                            new DynamicLink.AndroidParameters.Builder("com.example.listasupermercado")
-                                    .build())
+                    .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
                     .buildDynamicLink();
 
             Intent sendIntent = new Intent();

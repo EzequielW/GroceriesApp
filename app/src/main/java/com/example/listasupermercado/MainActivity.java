@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mainAdapter);
 
+        if (user == null) {
+            Intent intent = new Intent(this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finishAndRemoveTask();
+        }
         // Load user carts
         Query cartQuery = dbRef.child("carts").orderByChild("sharedUsers/"+user.getUid()).startAt(false);
         cartQuery.addValueEventListener(new ValueEventListener() {
